@@ -60,3 +60,9 @@
     margin: 5px;
     background-color: rgb(187, 187, 187);
 }
+
+.login-logout-btn{
+    cursor: pointer;
+    padding: 0px 20px;
+    background-color: rgb(3, 223, 14);
+}
