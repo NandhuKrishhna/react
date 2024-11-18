@@ -1,8 +1,13 @@
 import { LOGO_URL } from "../utils/constants.js";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 const Header = () => {
   // let button = "LOGIN"
   const [loginButton, setloginButton] = useState("LOGIN")
+    console.log("Header render");
+  
+    useEffect(()=>{
+      console.log("userEffect is called");
+    },[])
     return (
       <div className="header">
         <div>
@@ -19,8 +24,8 @@ const Header = () => {
             <li>Contact us</li>
             <li>Cart</li>
             <button className="login-logout-btn" onClick={()=>{
-              setloginButton("LOGOUT")
-              console.log(loginButton);
+              loginButton==="LOGIN"? setloginButton("LOGOUT") : setloginButton("LOGIN")
+              // console.log(loginButton);
             }}>{loginButton}</button>
           </ul>
         </div>
