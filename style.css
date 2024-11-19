@@ -69,3 +69,11 @@
 .filter{
     display: flex;
 }
+
+.menu-img{
+    width: 300px;
+}
+.menu{
+    padding: 10px;
+    margin: 10px;
+}

@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard.js";
 import resObj from "../utils/mockData.js";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.js";
+import { Link } from "react-router-dom";
 const Body = () => {
   const [listofRestaurant, setlistofRestaurant] = useState([]);
   const [filterListofRestaurant , setfilterListofRestaurant] = useState([])
@@ -64,12 +65,14 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filterListofRestaurant.map((res) =>
-          res?.info ? (
-            <RestaurantCard key={res.info.id} resData={res.info} />
-          ) : null
-        )}
-      </div>
+      {filterListofRestaurant.map((res) =>
+        res?.info ? (
+          <Link to={`/restaurant/${res.info.id}`} key={res.info.id}>
+            <RestaurantCard resData={res.info} />
+          </Link>
+        ) : null
+      )}
+    </div>
     </div>
   );
 };
