@@ -1,40 +1,38 @@
-import React from "react";
 
-class UserClass extends React.Component {
-  constructor(props) {
-    // console.log(" CHild constructore is called");
-    super(props);
-    this.state = {
-        userInfo : {
-            name : "DUmmy",
-            location : "Kerala"
-        }
-    }
+import React from "react"
+class UserClass extends React.Component{
+
+  constructor(props){
+   super(props)
+   console.log(props)
+
+   this.state = {
+    count : 0,
+    count2 : 0
+
+   }
+  //  console.log(this.props.name,"Child constructor")
   }
-   async componentDidMount(){
-    // console.log(this.props.name +'CHild component did Mount');
-    //Api call
-   const data = await fetch("https://api.github.com/users/NandhuKrishhna")
-   const json =  await  data.json();
-   console.log(json);
-     this.setState({
-        userInfo : json
-     })
+
+  componentDidMount(){
+    // console.log(this.props.name,"Child component did mount")
   }
   render() {
-      const { login , location } = this.state.userInfo
-      
-    //   console.log(name,'render is called');
+    const { userInfo } = this.props;
+
+    // debugger; 
     return (
       <div className="user-card">
-
-        
-        <h2>Name : {login}</h2>
-        <h2>Location :{location || "kerala"}</h2>
-        <h2>Contact :</h2>
+        <img src={userInfo.image} alt="User" />
+        <h2>{userInfo.firstName} {userInfo.lastName}</h2>
+        <p>Age: {userInfo.age}</p>
+        <p>BirthData : {userInfo.birthDate}</p>
+        <p>Gender : {userInfo.gender}</p>
+        <p>Phone: {userInfo.phone}</p>
+        <p></p>
+        {/* Render other user details */}
       </div>
     );
   }
 }
-
-export default UserClass;
+export default UserClass

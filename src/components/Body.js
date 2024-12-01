@@ -3,10 +3,13 @@ import resObj from "../utils/mockData.js";
 import { useState, useEffect ,useRef} from "react";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus.js"
 const Body = () => {
   const [listofRestaurant, setlistofRestaurant] = useState([]);
   const [filterListofRestaurant, setfilterListofRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const checkOnlineStatus = useOnlineStatus();
   // console.log('body rendered');
   useEffect(() => {
     fetchData();
@@ -42,7 +45,7 @@ const Body = () => {
     }
   };
   // console.log("list",listofRestaurant);
-
+   if(checkOnlineStatus === false) return <h1>Ops.. Look like you are offline. Check your internet connection!</h1>
   return listofRestaurant.length === 0 ? (
     <Shimmer />
   ) : (

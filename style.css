@@ -79,5 +79,11 @@
 }
 .user-card{
     padding : 10px;
-    border : 2px solid black
+    border : 2px solid black;
+}
+.about-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
