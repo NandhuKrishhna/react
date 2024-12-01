@@ -15,18 +15,17 @@ const Shimmer = () =>{
           Top Restaurants
         </button>
       </div>
-        <div className="shimmer-container">
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
-            <div className="shimmer-cards">Cards</div>
+        <div className="flex flex-wrap justify-between">
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
+            <div className="w-[200px] bg-gray-200 h-[400px] rounded-md shadow-md">Cards</div>
         </div>
         </div>
     )

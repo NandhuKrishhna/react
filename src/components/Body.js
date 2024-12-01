@@ -1,9 +1,9 @@
 import RestaurantCard from "./RestaurantCard.js";
 import resObj from "../utils/mockData.js";
-import { useState, useEffect ,useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus.js"
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 const Body = () => {
   const [listofRestaurant, setlistofRestaurant] = useState([]);
   const [filterListofRestaurant, setfilterListofRestaurant] = useState([]);
@@ -16,7 +16,7 @@ const Body = () => {
   }, []);
   // const inputRef = useRef(null);
   // function Inputfocus(){
-   
+
   //   const handleFocusn=()=>{
   //     inputRef.current.focus();
   //   }
@@ -45,22 +45,27 @@ const Body = () => {
     }
   };
   // console.log("list",listofRestaurant);
-   if(checkOnlineStatus === false) return <h1>Ops.. Look like you are offline. Check your internet connection!</h1>
+  if (checkOnlineStatus === false)
+    return (
+      <h1>Ops.. Look like you are offline. Check your internet connection!</h1>
+    );
   return listofRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
-          <input 
+      <div className="flex pb-5 items-center">
+        <div className="">
+          <input
             type="text"
-            className="search-box"
+            className="border border-gray-300 p-1 mx-5 rounded-md 
+         hover:border-blue-500 focus:border-blue-700 focus:outline-none"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
+            className="bg-green-200 p-1 border border-black-500 rounded-md hover:bg-green-700 font-semibold"
             onClick={() => {
               const filteredList = listofRestaurant.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -71,20 +76,22 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            // Filter using `info.avgRating` instead of `avgRating`
-            const filtered = listofRestaurant?.filter(
-              (res) => res.info.avgRating > 4.5
-            );
-            setfilterListofRestaurant(filtered);
-          }}
-        >
-          Top Restaurants
-        </button>
+        <div className=" bg-gray-500 ml-6 p-1 border border-blue-500 rounded-md  hover:bg-gray-700">
+          <button
+            className="font-bold text-white"
+            onClick={() => {
+              // Filter using `info.avgRating` instead of `avgRating`
+              const filtered = listofRestaurant?.filter(
+                (res) => res.info.avgRating > 4.5
+              );
+              setfilterListofRestaurant(filtered);
+            }}
+          >
+            Top Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap justify-between">
         {filterListofRestaurant.map((res) =>
           res?.info ? (
             <Link to={`/restaurant/${res.info.id}`} key={res.info.id}>
