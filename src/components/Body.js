@@ -1,16 +1,20 @@
-import RestaurantCard from "./RestaurantCard.js";
+import RestaurantCard ,{withOpenedLabel} from "./RestaurantCard.js";
 import resObj from "../utils/mockData.js";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef , useContext } from "react";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import UserContext from "../utils/UserContext.js";
+// import UserContext from "../utils/UserContext.js"
 const Body = () => {
   const [listofRestaurant, setlistofRestaurant] = useState([]);
   const [filterListofRestaurant, setfilterListofRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const checkOnlineStatus = useOnlineStatus();
-  // console.log('body rendered');
+  const ResturantCardOpened = withOpenedLabel(RestaurantCard)
+  const {setUserName} = useContext(UserContext)
+  // console.log(listofRestaurant);
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,7 +28,7 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9816358&lng=76.2998842&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.9312328&lng=76.26730409999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       // console.log(json);
@@ -44,7 +48,7 @@ const Body = () => {
       console.error("Error fetching data:", error);
     }
   };
-  // console.log("list",listofRestaurant);
+
   if (checkOnlineStatus === false)
     return (
       <h1>Ops.. Look like you are offline. Check your internet connection!</h1>
@@ -90,15 +94,24 @@ const Body = () => {
             Top Restaurants
           </button>
         </div>
+        <div>
+          <input onChange={(e)=> setUserName(e.target.value)} className="mx-3 border border-black p-1 rounded-sm" type="text" placeholder="Enter your name..." />
+        </div>
       </div>
-      <div className="flex flex-wrap justify-between">
-        {filterListofRestaurant.map((res) =>
-          res?.info ? (
-            <Link to={`/restaurant/${res.info.id}`} key={res.info.id}>
-              <RestaurantCard resData={res.info} />
-            </Link>
-          ) : null
+      <div className="flex flex-wrap justify-between ">
+      {
+  filterListofRestaurant.map((res) =>
+    res?.info ? (
+      <Link to={`/restaurant/${res.info.id}`} key={res.info.id}>
+        {res.info.isOpen && res.info.avgRating > 4.6 ?  (
+          <ResturantCardOpened resData={res.info} />
+        ) : (
+          <RestaurantCard resData={res.info} />
         )}
+      </Link>
+    ) : null
+  )
+}
       </div>
     </div>
   );

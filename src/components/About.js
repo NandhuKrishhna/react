@@ -1,7 +1,7 @@
 import { Component } from "react"
 import User from "./User"
 import UserClass from "./UserClass"
-
+import UserContext from "../utils/UserContext.js"
 class About extends Component{
     constructor(props){
         super(props)
@@ -33,6 +33,11 @@ class About extends Component{
         // console.log(this.state.userInfo)
         return (
             <div className="about-card">
+                <div>
+                 <UserContext.Consumer>
+                    {(data)=> console.log(data)}
+                 </UserContext.Consumer>
+                </div>
                 <h1>This is about page</h1>
                  <UserClass userInfo={this.state.userInfo}/>
            

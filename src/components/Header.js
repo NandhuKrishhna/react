@@ -1,10 +1,13 @@
 import { LOGO_URL } from "../utils/constants.js";
-import { useState} from "react";
+import { useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import UserContext from "../utils/UserContext.js"
 const Header = () => {
   const checkOnline = useOnlineStatus();
   // let button = "LOGIN"
+  const data = useContext(UserContext)
+  console.log(data)
   const [loginButton, setloginButton] = useState("LOGIN")
   
     return (
@@ -37,6 +40,9 @@ const Header = () => {
               loginButton==="LOGIN"? setloginButton("LOGOUT") : setloginButton("LOGIN")
               // console.log(loginButton);
             }}>{loginButton}</button>
+            <li className="font-bold">
+              {data.loggedInUser}
+            </li>
           </ul>
         </div>
       </div>

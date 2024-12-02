@@ -1,5 +1,7 @@
 
 import React from "react"
+import { IMG_USER_RUL } from "../utils/constants"
+
 class UserClass extends React.Component{
 
   constructor(props){
@@ -23,7 +25,7 @@ class UserClass extends React.Component{
     // debugger; 
     return (
       <div className="user-card">
-        <img src={userInfo.image} alt="User" />
+        <img src={IMG_USER_RUL} alt="User" />
         <h2>{userInfo.firstName} {userInfo.lastName}</h2>
         <p>Age: {userInfo.age}</p>
         <p>BirthData : {userInfo.birthDate}</p>
